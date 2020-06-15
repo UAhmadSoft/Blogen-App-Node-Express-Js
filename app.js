@@ -68,6 +68,7 @@ app.use(function (req, res, next) {
   return next();
 });
 
+// Routes
 app.use('/dashboard', index);
 app.use('/posts', posts);
 app.use('/categories', categories);
