@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/fontawesome-free-5.12.1-web/css/all.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <title>Bootstrap Theme</title>
+  </head>
+
+  <body>
+    <%- include ('partials/nav') -%>
+
+    <div class="container my-5 py-5">
+      <div class="row">
+        <!-- picture -->
+        <div class="col-md-3 p-3 bg-warning">
+          <img
+            src="/images/users/<%=profile.image %>"
+            class="img-fluid rounded-circle"
+            alt="User Image"
+          />
+        </div>
+
+        <!-- User Profile -->
+        <div class="col-md-6 p-3 text-white bg-success">
+          <p class="h4 my-4"><%= profile.name %></p>
+          <p class="h5">
+            <i class="far fa-envelope pr-2"></i> <%= profile.email %>
+          </p>
+          <p class="h6 py-4">
+            <%= profile.bio %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="/javascripts/search.js"></script> -->
+    <script>
+      // Get the current year for the copyright
+      // const yearElement = document.getElementById('year');
+      // yearElement.innerText = new Date().getFullYear();
+
+      // const anchors = document.getElementsByTagName('a');
+      // anchors[4].classList.add('active');
+    </script>
+  </body>
+</html>

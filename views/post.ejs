@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/fontawesome-free-5.12.1-web/css/all.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <title>Bootstrap Theme</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 80px bottom margin for footer */
+      body {
+        margin-bottom: 80px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header id="main-header" class="py-2 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1><i class="fas fa-pencil-alt"></i> Posts</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <%- include ('partials/nav') %> <% if(!post) { %>
+    <div
+      class="alert alert-danger text-center alert-dismissible fade show"
+      role="alert"
+    >
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span>&times;</span>
+      </button>
+      <strong
+        >The Post you are trying to access is either deleted or is NOT public
+        !</strong
+      >
+    </div>
+
+    <script>
+      $('.alert').alert();
+    </script>
+    <% } %>
+
+    <!-- SEARCH -->
+    <!-- <section id="search" class="py-4 mb-4 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search Posts..."
+                id="searchBtn"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- POSTS -->
+    <% if (post) { %>
+
+    <section id="postsSection" class="mt-2">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 px-0">
+            <div class="card bg-primary text-">
+              <div
+                class="card-header text-white d-flex justify-content-between"
+              >
+                <h4>
+                  <i class="fa fa-user"></i> Posted By :- <% if
+                  (post.user.name=== userName) { %> You <% } else { %> <%=
+                  post.user.name %> <% } %>
+                </h4>
+
+                <% if(post.user.name=== userName) { %>
+
+                <button class="btn-danger btn" id="delPost">
+                  Delete Post <i class="fas fa-trash"></i>
+                </button>
+                <% } %>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title text-light" id="postTitle">
+                  <%= post.title %>
+                </h4>
+                <p class="card-text pl-4" style="color: rgb(255, 255, 255);">
+                  <%= post.body %>
+                </p>
+              </div>
+              <div
+                class="card-footer text-white-50 d-flex justify-content-start align-content-center"
+              >
+                <a href="" class="btn btn-success m-2" id="like">
+                  <% if (like === false) { %> Like
+                  <i class="fa fa-thumbs-up pl-2"></i>
+                  <% } else { %> UnLike
+                  <i class="fa fa-thumbs-down pl-2"></i>
+
+                  <% } %>
+                </a>
+                <p></p>
+                <button
+                  href=""
+                  class="btn btn-warning m-2 text-dark"
+                  id="comment"
+                  data-toggle="modal"
+                  data-target="#commentModal"
+                >
+                  Comment
+                  <i class="fas fa-comment pl-2"></i>
+                </button>
+
+                <p class="ml-auto align-self-end px-2">
+                  <%= likes %> Likes |
+                </p>
+
+                <p class="align-self-end px-2">
+                  <%= post.comments.length %> Comments |
+                </p>
+                <p class="align-self-end">
+                  Last Updated <%= post.getFormattedDate() %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <% if (post.comments.length>0) { %>
+
+    <section id="comments" class="pt-3" style="background: #ffd52e;">
+      <div class="container-fluid">
+        <h4>
+          Comments
+        </h4>
+
+        <% for (let i = 0; i < post.comments.length; i++) { %>
+        <div class="row my-0 py-0">
+          <div class="col-md-6 py-3">
+            <div class="card" style="background: #2effab;">
+              <div class="card-header">
+                <i class="fas fa-user"></i> <%= post.comments[i].user.name %>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><%= post.comments[i].body %></p>
+              </div>
+              <div
+                class="card-footer text-muted d-flex justify-content-between align-items-start"
+              >
+                <div>
+                  <%= post.comments[i].getFormattedDate() %>
+                </div>
+
+                <% if(post.comments[i].user.name === userName) { %>
+                <button class="btn-danger btn btn-sm delComment">
+                  Delete Comment <i class="fas fa-trash"></i>
+                  <span class="sr-only">
+                    <%= post.comments[i]._id %>
+                  </span>
+                </button>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </section>
+    <% } %> <% } %>
+
+    <div
+      class="modal fade"
+      id="commentModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Comment</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="w-100" style="height: 150px;">
+              <textarea
+                name="textarea"
+                id="commentBody"
+                class="form-control w-100 h-100"
+              ></textarea>
+              <span class="invalid-feedback">
+                Comment must NOT be Empty !
+              </span>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="commentBtn" class="btn btn-primary">
+              Comment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="main-footer" class="bg-dark text-white py-2 fixed-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="lead text-center">
+              Copyright &copy;
+              <span id="year"></span>
+              Blogen
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Get the current year for the copyright
+      const yearElement = document.getElementById('year');
+      yearElement.innerText = new Date().getFullYear();
+
+      // const anchors = document.getElementsByTagName('a');
+      // console.log(anchors);
+
+      // anchors[0].classList.add('active');
+    </script>
+    <script src="/javascripts/post.js"></script>
+  </body>
+</html>

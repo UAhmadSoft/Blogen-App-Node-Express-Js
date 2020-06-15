@@ -1,0 +1,7 @@
+{
+  "editor.fontSize": 17,
+  "emmet.includeLanguages": {
+    "ejs": "html"
+  },
+  "git.ignoreLimitWarning": true
+}

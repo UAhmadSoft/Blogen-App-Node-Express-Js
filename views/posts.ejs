@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/fontawesome-free-5.12.1-web/css/all.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+    <title>Bootstrap Theme</title>
+    <link rel="stylesheet" href="/stylesheets/posts.css">
+    <!-- <link rel="stylesheet" href="/stylesheets/posts2.css"> -->
+  </head>
+
+  <body>
+    <%- include ('partials/nav') -%>
+
+
+    <!-- HEADER -->
+    <header id="main-header" class="py-2 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1><i class="fas fa-pencil-alt"></i> Posts</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SEARCH -->
+    <section id="search" class="py-4 mb-4 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <a
+              href="#"
+              class="btn btn-primary btn-block"
+              data-toggle="modal"
+              data-target="#addPostModal"
+            >
+              <i class="fas fa-plus"></i> Add Post
+            </a>
+          </div>
+          <div class="col-md-6 ml-auto">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search Posts..."
+                id="searchBtn"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <button class="btn btn-lg btn-success" type="button" data-toggle="collapse" data-target="#filterBox" aria-expanded="false"
+          aria-controls="filterBox">
+        Filter
+      </button>
+    </div>
+    <div class= "container collapse mt-3" id="filterBox">
+      <div class="row">
+        <div class="col p-3">
+          <div class="card bg-info d-flex flex-row" style=" background-color: inherit; border-color:darkblue;">
+            <div class="card-body flex-grow-1" style="max-width: 250px;">
+              <h3 class="card-title border-primary p-2" style="border-bottom: 3px solid #00abff !important;">
+                Sort
+              </h3>
+              <div class="d-flex flex-column">
+                <div  class="card-text up">
+                  Date
+                  <input type="radio" name="sort" id="1" class="sortInput" value="up">
+                  <label class="sortUp"  for="1" style="opacity :1;">M</label>
+                  <!-- <span class="up1"></span> -->
+                  <input type="radio" name="sort" id="2" class="sortInput" value="down">
+                  <label  class="sortDown" for="2" style="opacity :1;">M</label>
+                   <!-- <span class="down1"></span> -->
+                   <!-- <i class="fas fa-chevron-circle-up" ></i>  <i class="fas fa-chevron-circle-down" ></i>  -->
+                
+                </div>
+                <div  class="card-text up">
+                  Category
+                  <input type="radio" name="sort2" id="3" class="sortInput" value="up">
+                  <label class="sortUp"  for="3" style="opacity :1;">M</label>
+                  <!-- <span class="up1"></span> -->
+                  <input type="radio" name="sort2" id="4" class="sortInput" value="down">
+                  <label  class="sortDown" for="4" style="opacity :1;">M</label>
+                   <!-- <span class="down1"></span> -->
+                   <!-- <i class="fas fa-chevron-circle-up" ></i>  <i class="fas fa-chevron-circle-down" ></i>  -->
+                
+                </div>
+                
+                <div  class="card-text up">
+                  User
+                  <input type="radio" name="sort3" id="5" class="sortInput" value="up">
+                  <label class="sortUp"  for="5" style="opacity :1;">M</label>
+                  <!-- <span class="up1"></span> -->
+                  <input type="radio" name="sort3" id="6" class="sortInput" value="down">
+                  <label  class="sortDown" for="6" style="opacity :1;">M</label>
+                   <!-- <span class="down1"></span> -->
+                   <!-- <i class="fas fa-chevron-circle-up" ></i>  <i class="fas fa-chevron-circle-down" ></i>  -->
+                
+                </div>
+                <div  class="card-text up">
+                  Comments
+                  <input type="radio" name="sort4" id="7" class="sortInput" value="up">
+                  <label class="sortUp"  for="7" style="opacity :1;">M</label>
+                  <!-- <span class="up1"></span> -->
+                  <input type="radio" name="sort4" id="8" class="sortInput" value="down">
+                  <label  class="sortDown" for="8" style="opacity :1;">M</label>
+                   <!-- <span class="down1"></span> -->
+                   <!-- <i class="fas fa-chevron-circle-up" ></i>  <i class="fas fa-chevron-circle-down" ></i>  -->
+                
+                </div>
+                <div  class="card-text up">
+                  Likes
+                  <input type="radio" name="sort5" id="9" class="sortInput" value="up">
+                  <label class="sortUp"  for="9" style="opacity :1;">M</label>
+                  <!-- <span class="up1"></span> -->
+                  <input type="radio" name="sort5" id="10" class="sortInput" value="down">
+                  <label  class="sortDown" for="10" style="opacity :1;">M</label>
+                   <!-- <span class="down1"></span> -->
+                   <!-- <i class="fas fa-chevron-circle-up" ></i>  <i class="fas fa-chevron-circle-down" ></i>  -->
+                
+                </div>
+                
+               
+              </div>
+            </div>
+            <div class="card-body flex-grow-1">
+              <h3 class="card-title border-primary p-2" style="border-bottom: 3px solid #00abff !important;">
+                Date
+              </h3>
+              <!-- <p class="card-text">Text</p> -->
+              <form action="/posts" style="margin-top: 40px;" method="GET">
+                
+                <div class="form-group position-relative text-white">
+                  
+                  <label for="date" style="font-size: 24px;">From</label>
+                  <!-- todo .take resent year from Js and then set 4 options from prev 4 years -->
+                  <div class="box" id="box1">
+                    <select  name="date" id="fromYear" class="box">                    
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
+                      <option value="2017">2017</option>
+                      <option value="">Older</option>                    
+                    </select>
+                  </div>
+
+                  <div class="box" id="box2">
+                    <select  name="date" id="fromMonth"  class="box">
+                      
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    
+                    </select>
+                  </div>
+                  
+                </div>
+                <div class="form-group position-relative text-white">
+                  
+                  <label for="date" style="font-size: 24px;">To</label>
+                  <!-- todo .take resent year from Js and then set 4 options from prev 4 years -->
+                  <div class="box" id="box1">
+                    <select  name="date" id="toYear" class="box">                    
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                    </select>
+                  </div>
+
+                  <div class="box" id="box2">
+                    <select  name="date" id="toMonth"  class="box">
+                      
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    
+                    </select>
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+            <div class="card-body flex-grow-0">
+              <h3 class="card-title border-primary p-2" style="border-bottom: 3px solid #00abff !important;">Filter</h3>
+              <!-- <p class="card-text">Text</p> -->
+              <form>
+                <div class="form-group">
+                  <label for="categoryFilter" style="font-size: larger;">
+                    Category
+                  </label>
+                  <input type="text" class="form-control w-80" style="    background-color: dodgerblue;
+    color: lavender;" id="catFilter">
+                </div>
+                <div class="form-group">
+                  <label for="postFilter" style="font-size: larger;">
+                    Post
+                  </label>
+                  <input type="text" class="form-control w-80" style="    background-color: dodgerblue;
+    color: lavender;" id="postFilter">
+                </div>
+                
+                <div class="form-check">
+                        <label class="form-check-label" for="all">
+                          <input
+                            type="radio"
+                            class="form-check-input"
+                            id="all"
+                            name="postBy"
+                            value="all"
+                            checked
+                          />All
+                        </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label" for="me">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      id="me"
+                      name="postBy"
+                      value="me"
+                    />Me
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label" for="others">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="postBy"
+                      id="others"
+                      value="others"
+                    />Others
+                  </label>
+                </div>
+              </form>
+            </div>
+
+            <div class="card-footer flex-grow-0">
+              <button class="btn btn-success btn-lg" id="filterBtn">
+                Filter Results
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- POSTS -->
+    <section id="postsSection" class="mt-3">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-header">
+                <hgroup>
+                  <h4>Latest Posts </h4> <h5>
+                    <%= posts.length %> Results 
+                  </h5  >
+                </hgroup>
+              </div>
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="searchBody">
+                  <% for( let i = 0; i < posts.length; i++ ) { %>
+
+                  <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= posts[i].title %></td>
+                    <td><%= posts[i].category.title %></td>
+                    <td><%= posts[i].getFormattedDate() %></td>
+                    <td><%= posts[i].user.name %></td>
+                    <td>
+                      <a
+                        href="posts/<%= posts[i].id %>  "
+                        class="btn btn-secondary"
+                      >
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  <% } %>
+                  
+                </tbody>
+              </table>
+
+              <!-- PAGINATION -->
+              <nav class="ml-4">
+                <ul class="pagination">
+                  <li class="page-item disabled">
+                    <a href="#" class="page-link">Previous</a>
+                  </li>
+                  <li class="page-item active">
+                    <a href="#" class="page-link">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="lead text-center">
+              Copyright &copy;
+              <span id="year"></span>
+              Blogen
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+ 
+
+     <div class="modal fade" id="addPostModal" hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title">Add Post</h5>
+            <button class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="postTitle"/>
+                <span class="invalid-feedback">
+                  A Post must contain a title !
+                </span>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" id="postCat">
+
+                  <% for(i=0;i<categories.length;i++) { %>
+
+                     <option value="<%= categories[i].title %>"><%= categories[i].title %></option>
+
+                 <% }%>
+
+                  
+                </select>
+              </div>
+              <!-- <div class="form-group">
+                <label for="image">Upload Image</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="image" />
+                  <label for="image" class="custom-file-label"
+                    >Choose File</label
+                  >
+                </div>
+                <small class="form-text text-muted">Max Size 3mb</small>
+              </div> -->
+              <div class="form-group">
+                <label for="body">Body</label>
+                <textarea name="editor1" class="form-control" id="postBody"></textarea>
+                <span class="invalid-feedback">
+                  A Post must contain a Body !
+                </span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="" id="addPost">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/javascripts/search.js"></script>
+    <script src="/javascripts/addPost.js"></script>
+    <script src="/javascripts/filterPosts.js"></script>
+    <script>
+      // Get the current year for the copyright
+      const yearElement = document.getElementById('year');
+      yearElement.innerText = new Date().getFullYear();
+
+      const anchors = document.getElementsByTagName('a');
+      anchors[2].classList.add('active');
+    </script>
+  </body>
+</html>

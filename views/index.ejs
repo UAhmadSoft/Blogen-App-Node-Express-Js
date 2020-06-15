@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/fontawesome-free-5.12.1-web/css/all.css"
+      crossorigin="anonymous"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <title>Bootstrap Theme</title>
+  </head>
+
+  <body>
+    <%- include ('partials/nav') -%>
+
+    <!-- HEADER -->
+    <header id="main-header" class="py-2 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1><i class="fas fa-cog"></i>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <% if(success.length>0) { %> 
+      <div class="alert alert-success alert-dismissible fade text-center show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <strong> <%= success %>   </strong> 
+      </div>
+    <% } %> 
+    <!-- ACTIONS -->
+    <section id="actions" class="py-4 mb-4 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <a
+              href="#"
+              class="btn btn-primary btn-block"
+              data-toggle="modal"
+              data-target="#addPostModal"
+            >
+              <i class="fas fa-plus"></i> Add Post
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a
+              href="#"
+              class="btn btn-success btn-block"
+              data-toggle="modal"
+              data-target="#addCategoryModal"
+              id="addCatAnchor"
+            >
+              Add Category
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a
+              href="#"
+              class="btn btn-warning btn-block"
+              data-toggle="modal"
+              data-target="#addUserModal"
+            >
+              <i class="fas fa-plus"></i> Add User
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSTS -->
+    <section id="posts">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header">
+                <h4>Latest Posts</h4>
+              </div>
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for( let i = 0; i < posts.length; i++ ) { %>
+
+                  <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= posts[i].title %></td>
+                    <td><%= posts[i].category.title %></td>
+                    <td><%= posts[i].getFormattedDate() %></td>
+                    
+                    <td>
+                      <a
+                        href="posts/<%= posts[i].id %>  "
+                        class="btn btn-secondary"
+                      >
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  <% } %>
+                  <!-- <tr>
+                    <td>1</td>
+                    <td>Post One</td>
+                    <td>Web Development</td>
+                    <td>May 10 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Post Two</td>
+                    <td>Tech Gadgets</td>
+                    <td>May 11 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Post Three</td>
+                    <td>Web Development</td>
+                    <td>May 13 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Post Four</td>
+                    <td>Business</td>
+                    <td>May 15 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Post Five</td>
+                    <td>Web Development</td>
+                    <td>May 17 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Post Six</td>
+                    <td>Health & Wellness</td>
+                    <td>May 20 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>
+                        Details
+                      </a>
+                    </td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card text-center bg-primary text-white mb-3">
+              <div class="card-body">
+                <h3>Posts</h3>
+                <h4 class="display-4"><i class="fas fa-pencil-alt"></i> <%= posts.length %>  </h4>
+                <a href="/posts" class="btn btn-outline-light btn-sm">View</a>
+              </div>
+            </div>
+
+            <div class="card text-center bg-success text-white mb-3">
+              <div class="card-body">
+                <h3>Categories</h3>
+                <h4 class="display-4">
+                  <i class="fas fa-folder"></i>
+
+                  <% if(categories) { %> <%= categories.length %> <% } else { %>
+                  11 <% } %>
+                </h4>
+                <a href="/categories" class="btn btn-outline-light btn-sm"
+                  >View</a
+                >
+              </div>
+            </div>
+
+            <div class="card text-center bg-warning text-white mb-3">
+              <div class="card-body">
+                <h3>Users</h3>
+                <h4 class="display-4"><i class="fas fa-users"></i> <%= users.length %>  </h4>
+                <a href="/users" class="btn btn-outline-light btn-sm">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="lead text-center">
+              Copyright &copy;
+              <span id="year"></span>
+              Blogen
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODALS -->
+
+    <!-- ADD POST MODAL -->
+    <div class="modal fade" id="addPostModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title">Add Post</h5>
+            <button class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="postTitle"/>
+                <span class="invalid-feedback">
+                  A Post must contain a title !
+                </span>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" id="postCat">
+
+                  <% for(i=0;i<categories.length;i++) { %>
+
+                     <option value="<%= categories[i].title %>"><%= categories[i].title %></option>
+
+                 <% }%>
+
+                  
+                </select>
+              </div>
+              <!-- <div class="form-group">
+                <label for="image">Upload Image</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="image" />
+                  <label for="image" class="custom-file-label"
+                    >Choose File</label
+                  >
+                </div>
+                <small class="form-text text-muted">Max Size 3mb</small>
+              </div> -->
+              <div class="form-group">
+                <label for="body">Body</label>
+                <textarea name="editor1" class="form-control" id="postBody"></textarea>
+                <span class="invalid-feedback">
+                  A Post must contain a Body !
+                </span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="" id="addPost">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD CATEGORY MODAL -->
+    <div class="modal fade" id="addCategoryModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">Add Category</h5>
+            <button class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% if(message.length > 0) { %>
+
+            <div
+              class="alert alert-danger alert-dismissible text-center"
+              id="alert"
+            >
+              <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+              </button>
+              <strong> <%= message %> </strong>
+            </div>
+
+            <% } %>
+            <form method="POST" action="/categories">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" />
+                <div class="invalid-feedback">
+                  This is required field
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="Summary">Summary</label>
+
+                <textarea
+                  name="cat"
+                  id="summary"
+                  class="form-control"
+                  rows="3"
+                  aria-describedby="helpId"
+                  required="required"
+                ></textarea>
+                <small id="helpId" class="text-muted"
+                  >A Short Explanation of Category</small
+                >
+                <div class="invalid-feedback">
+                  This is required field
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" data-dismiss="" id="addCat">
+              Add Category
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD USER MODAL -->
+    <div class="modal fade" id="addUserModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-white">
+            <h5 class="modal-title">Add User</h5>
+            <button class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" class="form-control" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-warning" data-dismiss="">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script src="/javascripts/addCat.js"></script>
+    <script src="/javascripts/addPost.js"></script>
+    <script>
+      // Get the current year for the copyright
+      const yearElement = document.getElementById('year');
+      yearElement.innerText = new Date().getFullYear();
+
+      const anchors = document.getElementsByTagName('a');
+      anchors[1].classList.add('active');
+    </script>
+  </body>
+</html>

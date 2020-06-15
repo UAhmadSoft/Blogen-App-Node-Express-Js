@@ -1,0 +1,137 @@
+<! DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/fontawesome-free-5.12.1-web/css/all.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <title><%= category.title %></title>
+  </head>
+  <body>
+    <%- include ('partials/nav') -%>
+
+    <div class="my-5 container-fluid " id="addCategory ">
+      <div class="container col-md-9 border border-success">
+        <div class="row">
+
+          <div class="bg-success col-md-12 text-white  modal-header justify-content-center">
+            <h5 >Category</h5>
+          </div>
+        </div class="row ">
+         <div>
+            <div class="modal-body col-md-12">
+              <form method="POST" action="/categories" class="">
+                <% if(message.length > 0) { %>
+
+                    <div
+                      class="alert alert-danger alert-dismissible text-center"
+                      id="alert"
+                    >
+                      <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                      </button>
+                      <strong> <%= message %> </strong>
+                    </div>
+
+                <% } %>
+                <% if(success.length > 0) { %>
+
+                    <div
+                      class="alert alert-success alert-dismissible text-center"
+                      id="alert"
+                    >
+                      <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                      </button>
+                      <strong> <%= success %> </strong>
+                    </div>
+
+                <% } %>
+                <div class="form-group">
+                  <label for="title" >Title</label>
+                  <input type="text" class="form-control" id="title" value="<%= category.title %> "/>
+                  <div class="invalid-feedback">
+                    This is required field
+                  </div>
+                </div>
+           
+                <div class="form-group">
+                  <label for="Summary">Summary</label>
+           
+                  <textarea
+                    name="cat"
+                    id="summary"
+                    class="form-control"
+                    rows="7"
+                    aria-describedby="helpId"
+                    required="required"
+                    
+                  ><%= category.summary %> </textarea>
+                  <small id="helpId" class="text-muted"
+                    >A Short Explanation of Category</small
+                  >
+                  <div class="invalid-feedback">
+                    This is required field
+                  </div>
+                </div>
+              </form>
+            </div>
+         </div>
+         <div class="row">
+          
+          <div class="modal-footer justify-content-around w-100">
+            <button class="btn btn-danger " data-dismiss="" id="delCat">
+              Delete Category <i class="fas fa-trash"></i>
+            </button>
+            <button class="btn btn-success " data-dismiss="" id="addCat">
+              Save Changes
+            </button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <a
+      class="d-none"
+      data-toggle=" "
+      data-target="#addCategory "
+      id="addCatAnchor"
+    >
+    </a>
+
+      </div>
+    </div>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/javascripts/updateCat.js"></script>
+    <script>
+      $('#addCatAnchor')[0].click();
+    </script>
+  </body>
+</html>

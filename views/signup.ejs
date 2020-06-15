@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/fontawesome-free-5.12.1-web/css/all.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="stylesheets/login.css" />
+    <title>Bootstrap Theme</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+      <div class="container">
+        <a href="/" class="navbar-brand">Blogen</a>
+      </div>
+      <div class="navbar-nav ml-auto">
+        <li class="nav-item" style="font-size: larger; padding-right: 15px;">
+          <a href="/login" class="nav-link" style="color: lawngreen;">Login</a>
+        </li>
+      </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header id="main-header" class="py-2 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1><i class="fas fa-user"></i> Blogen Admin</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <% if (message.length > 0){ %>
+    <div class="alert alert-success alert-dismissible text-center" id="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+      </button>
+      <strong> <%= message %> </strong>
+    </div>
+
+    <% } %> <% if (error.length > 0){ %>
+    <div class="alert alert-danger alert-dismissible text-center" id="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+      </button>
+      <strong> <%= error %> </strong>
+    </div>
+
+    <% } %>
+
+    <!-- ACTIONS -->
+
+    <!-- LOGIN -->
+    <section id="login" class="mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div class="card">
+              <div class="card-header">
+                <h4>Account Sign Up</h4>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      name="name"
+                    />
+                    <div class="invalid-feedback" id="emailFeed">
+                      Empty Name
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                    />
+                    <div class="invalid-feedback" id="emailFeed">
+                      Invalid Email
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                    />
+                    <div class="invalid-feedback" id="passFeed">
+                      Password must be at least 8 characters long
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="passwordConfirm">Password Confirm</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="passwordConfirm"
+                      name="passwordConfirm"
+                    />
+                    <div class="invalid-feedback" id="passFeed">
+                      Confirm Password NOT Matched !
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="bio">Your Bio</label>
+                    <br />
+                    <textarea
+                      class="form-control"
+                      name="bio"
+                      id="bio"
+                      cols="30"
+                      rows="5"
+                    ></textarea>
+
+                    <div class="invalid-feedback" id="passFeed">
+                      Your Bio must NOT be less than 30 characters
+                    </div>
+                  </div>
+                  <button
+                    id="submit"
+                    value="Login"
+                    class="btn btn-primary btn-block"
+                  >
+                    Create Account
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="lead text-center">
+              Copyright &copy;
+              <span id="year"></span>
+              Blogen
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Get the current year for the copyright
+      $('#year').text(new Date().getFullYear());
+    </script>
+    <script src="/javascripts/signup.js"></script>
+  </body>
+</html>
