@@ -1,0 +1,191 @@
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box select {
+  cursor: pointer;
+  background-color: lightseagreen;
+  color: white;
+  padding: 8px;
+  width: 100px;
+  border-radius: 3px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  /*   -webkit-appearance: button;  */
+  /*   appearance: button; */
+  outline: none;
+}
+
+.box::after {
+  content: '\f13a';
+  font-family: FontAwesome;
+  position: absolute;
+  top: -20px;
+  /* width: 200px; */
+  right: -60px;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:after::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 2px 30px 2px 2px;
+  /*border: none; - if you want the border removed*/
+}
+
+#box1 {
+  width: 0px;
+  /* top: 0; */
+  left: 30%;
+}
+#box2 {
+  width: 60px;
+  /* top: ; */
+  left: 70%;
+}
+
+#box1 select {
+  margin-left: 20px;
+  width: 90px;
+  /* top: 0; */
+  left: 30%;
+  margin-right: 10px;
+}
+#box2 select {
+  margin-left: 20px;
+
+  padding-right: 20px;
+  width: 150px;
+  /* top: ; */
+  left: 60%;
+}
+
+.fa-chevron-circle-up {
+  cursor: pointer;
+  padding: 0.3rem;
+  height: 100%;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 5px;
+  /* line-height: 45px; */
+  color: rgba(255, 255, 255, 0.5);
+  /* background-color: royalblue; */
+  /* background-color: darkcyan; */
+  pointer-events: none;
+}
+
+.flex-column div {
+  font-size: large;
+  /* margin: 10px; */
+  width: 150px;
+  text-align: end;
+  padding-right: 30%;
+  margin: 20px;
+}
+.flex-column i {
+  font-size: large;
+  margin: 10px;
+}
+
+input[type='radio'].sortInput {
+  /* font-size: larger
+  ; */
+  height: 20px;
+  width: 20px;
+  display: none;
+}
+
+input[type='radio'].sortInput + label {
+  position: absolute;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  font-size: 0em;
+  /* background-color: red; */
+}
+
+input[type='radio'].sortInput + label::after {
+  height: 20px;
+  width: 20px;
+  /* background-color: yellowgreen; */
+
+  font-family: FontAwesome;
+  /* position: absolute; */
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0.3rem;
+  height: 100%;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+input[type='radio'].sortInput:checked + label::after {
+  background-color: red;
+}
+.up1 {
+  left: 90px;
+}
+.down1 {
+  left: 120px;
+}
+
+.up {
+  position: relative;
+}
+
+.sortUp {
+  right: 30px;
+  margin: 0px;
+}
+.sortDown {
+  right: 0px;
+  margin: 0px;
+}
+
+label.sortDown::after {
+  /* content:  ; */
+  content: '\f139';
+}
+label.sortUp::after {
+  /* content:  ; */
+  content: '\f13a';
+}
+
+.form-check label {
+  cursor: pointer;
+  width: 100%;
+  font-size: 17px;
+}
+
+.form-check input[type='radio'] {
+  cursor: pointer;
+}
+
+label input[type='radio'] {
+  margin-left: 60px;
+  width: 15px;
+  height: 15px;
+}
