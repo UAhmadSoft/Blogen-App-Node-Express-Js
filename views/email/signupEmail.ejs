@@ -7,10 +7,6 @@
     <title>Simple Transactional Email</title>
   </head>
   <body class="">
-    <span class="preheader"
-      >This is preheader text. Some clients will show this text as a
-      preview.</span
-    >
     <table
       role="presentation"
       border="0"
@@ -35,7 +31,7 @@
                   >
                     <tr>
                       <td>
-                        <p>Hi <%= name %> ,</p>
+                        <p>Hi <%= user.name %> ,</p>
                         <p>
                           Welcome to Blogen App, we're glad to have you 🎉🙏
                         </p>
@@ -62,7 +58,7 @@
                                   <tbody>
                                     <tr>
                                       <td>
-                                        <a href="<%= url %> " target="_blank"
+                                        <a href="<%=url%>" target="_blank"
                                           >Activate Account</a
                                         >
                                       </td>
