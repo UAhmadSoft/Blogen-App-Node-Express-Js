@@ -6,8 +6,7 @@ const Post = require('./../models/postModel');
 
 const AppError = require('./../utils/appError');
 const catchAsync = require('./../utils/catchAsync');
-const SendEmail = require('./../utils/email');
-const sendMail = require('./../utils/email');
+const sendMail = require('../utils/email');
 // const flash = require()
 
 const signTOken = (id) => {
@@ -112,6 +111,9 @@ exports.signUp = catchAsync(async (req, res, next) => {
     email,
     message,
     subject: 'Your Account Activation Link for Blogen App !',
+    user: newUser,
+    template: 'signupEmail.ejs',
+    url: activationURL,
   });
 
   req.flash(
@@ -255,6 +257,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     email,
     message,
     subject: 'Your Password reset token (will expire in 10 minutes)',
+    user,
+    template: 'forgotPassword.ejs',
+    url: resetURL,
   });
 
   req.flash('message', 'Reset Password Token Successfully Sent to your Email');
