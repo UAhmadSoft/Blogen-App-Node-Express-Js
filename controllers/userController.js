@@ -132,7 +132,7 @@ exports.changeAvatar = catchAsync(async (req, res) => {
   const currentUser = req.user;
   currentUser.image = req.file.filename;
 
-  const updatedUser = await currentUser.save();
+  const updatedUser = await currentUser.save({ validateBeforeSave: false });
 
   res.status(200).json({
     status: 'success',
@@ -144,7 +144,7 @@ exports.deleteAvatar = catchAsync(async (req, res) => {
   const currentUser = req.user;
   currentUser.image = 'avatar.png';
 
-  const updatedUser = await currentUser.save();
+  const updatedUser = await currentUser.save({ validateBeforeSave: false });
 
   res.status(200).json({
     status: 'success',
