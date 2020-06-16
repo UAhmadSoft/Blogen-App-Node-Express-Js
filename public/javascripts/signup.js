@@ -32,7 +32,7 @@ submitBtn.addEventListener('click', handleSubmit);
 
 function handleSubmit(e) {
   e.preventDefault();
-  console.log(e);
+  // console.log(e);
 
   var name = nameInput.value;
   var email = emailInput.value;
@@ -63,11 +63,11 @@ function handleSubmit(e) {
     ? (bioInput.classList.add('is-invalid'), invalids++)
     : bioInput.classList.remove('is-invalid');
 
-  console.log(invalids);
+  // console.log(invalids);
 
   // Sending POST Request with email and password to server
   if (invalids === 0) {
-    console.log(email);
+    // console.log(email);
 
     email = email.toLowerCase();
     sendRequest(name, email, password, passwordConfirm, bio);

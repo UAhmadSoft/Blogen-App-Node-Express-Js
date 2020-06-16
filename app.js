@@ -82,9 +82,7 @@ app.use('/', index);
 
 // HANDLING UNHANDLED ROUTES
 app.all('*', (req, res, next) => {
-  console.log('====================================');
   console.log('404');
-  console.log('====================================');
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 

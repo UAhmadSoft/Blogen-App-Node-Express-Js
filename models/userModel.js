@@ -56,8 +56,6 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function (next) {
-  console.log('pre create');
-
   if (!this.isModified('password')) {
     return next();
   }
@@ -95,7 +93,7 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest('hex');
 
-  console.log({ resetToken }, this.passwordResetToken);
+  // console.log({ resetToken }, this.passwordResetToken);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 
@@ -105,14 +103,14 @@ userSchema.methods.createPasswordResetToken = function () {
 userSchema.methods.createAccountActivationLink = function () {
   const activationToken = crypto.randomBytes(32).toString('hex');
 
-  console.log(activationToken);
+  // console.log(activationToken);
 
   this.activationLink = crypto
     .createHash('sha256')
     .update(activationToken)
     .digest('hex');
 
-  console.log({ activationToken }, this.activationLink);
+  // console.log({ activationToken }, this.activationLink);
 
   return activationToken;
 };

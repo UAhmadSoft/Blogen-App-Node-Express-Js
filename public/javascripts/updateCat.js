@@ -15,7 +15,7 @@ window.onload = function doFirst() {
 
 delBtn.addEventListener('click', function delCategory(e) {
   var url = window.location.pathname.split('/');
-  console.log(url);
+  // console.log(url);
   var id = url[2];
 
   sendDeleteRequest(id);
@@ -41,7 +41,7 @@ addBtn.addEventListener('click', function addCategory(e) {
 
   if (title && summary) {
     var url = window.location.pathname.split('/');
-    console.log(url);
+    // console.log(url);
     var id = url[2];
 
     sendUpdateRequest(title, summary, id);

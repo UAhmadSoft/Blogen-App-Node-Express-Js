@@ -8,7 +8,7 @@ class APIFeatures {
     if (this.queryString.sort) {
       // ?sort=date,user
       // sort='date user'
-      console.log(this.queryString);
+      // console.log(this.queryString);
 
       let sort = this.queryString.sort.split(',').join(' ');
       this.query = this.query.sort(sort);
@@ -50,10 +50,8 @@ class APIFeatures {
     const { cat } = this.queryString;
 
     const regex = new RegExp(cat, 'g');
-    console.log(cat);
-    console.log('====================================');
-    console.log(regex);
-    console.log('====================================');
+    // console.log(cat);
+    // console.log(regex);
 
     // const posts = await this.query.find({
     //   'category.title': 'MERN Stack Development  ',

@@ -58,7 +58,7 @@ exports.updateCategory = catchAsync(async (req, res, next) => {
     });
   }
 
-  console.log(id);
+  // console.log(id);
 
   const category = await CatModel.findById(id);
 
@@ -93,7 +93,7 @@ exports.deleteCategory = catchAsync(async (req, res, next) => {
     });
   }
 
-  console.log(id);
+  // console.log(id);
 
   try {
     await CatModel.findByIdAndDelete(id);
@@ -102,7 +102,7 @@ exports.deleteCategory = catchAsync(async (req, res, next) => {
       status: 'success',
     });
   } catch (err) {
-    console.log('error deleting', err);
+    // console.log('error deleting', err);
 
     req.flash('message', 'Error Deleting Category ');
     return res.json({

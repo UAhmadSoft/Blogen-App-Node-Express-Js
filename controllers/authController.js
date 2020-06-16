@@ -273,14 +273,14 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 exports.resetPassword = catchAsync(async (req, res) => {
   // 1 Find the  user based on Token
 
-  console.log(req.params.resetToken);
+  // console.log(req.params.resetToken);
 
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.resetToken)
     .digest('hex');
 
-  console.log(hashedToken);
+  // console.log(hashedToken);
 
   const user = await User.findOne({
     passwordResetToken: hashedToken,
@@ -300,7 +300,7 @@ exports.resetPassword = catchAsync(async (req, res) => {
   // 3 Change Password and Log the User in
   const { password, passwordConfirm } = req.body;
 
-  console.log('passwords are', password, passwordConfirm);
+  // console.log('passwords are', password, passwordConfirm);
 
   user.password = password;
   user.passwordConfirm = passwordConfirm;
@@ -324,16 +324,14 @@ exports.resetPassword = catchAsync(async (req, res) => {
 
 exports.confirmMail = catchAsync(async (req, res) => {
   // 1 Hash The Avtivation Link
-  console.log('Link Now===============================');
-  console.log(req.params.activationLink);
-  console.log('====================================');
+  // console.log(req.params.activationLink);
 
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.activationLink)
     .digest('hex');
 
-  console.log(hashedToken);
+  // console.log(hashedToken);
 
   const user = await User.findOne({
     activationLink: hashedToken,

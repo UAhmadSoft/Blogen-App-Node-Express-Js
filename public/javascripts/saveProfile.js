@@ -27,9 +27,7 @@ saveAvatar.addEventListener('click', function deleteAccount(e) {
   }
   const form = new FormData();
   form.append('avatar', file);
-  console.log('====================================');
-  console.log(form);
-  console.log('====================================');
+  // console.log(form);
   updateAvatar(form);
 });
 
@@ -49,12 +47,8 @@ const updateAvatar = async (data) => {
     if (res.data.status === 'success') {
       btn1.style.display = '';
       // location.reload();
-      console.log('====================================');
-      console.log('success');
-      console.log('====================================');
     } else {
       btn2.style.display = '';
-      console.log('failed');
     }
   } catch (err) {
     btn3.style.display = '';

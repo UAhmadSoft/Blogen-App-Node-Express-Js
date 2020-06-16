@@ -48,9 +48,6 @@ Array.from(delComment).forEach((el) => {
 commentBtn.addEventListener('click', function commentPost(e) {
   // e.preventDefault();
 
-  console.log('====================================');
-  console.log('hrrrrr');
-  console.log('====================================');
   let comment = commentBody.value;
   let err = 0;
 
@@ -65,7 +62,7 @@ commentBtn.addEventListener('click', function commentPost(e) {
 
 likeBtn.addEventListener('click', function likePost(e) {
   e.preventDefault();
-  console.log(postTitle);
+  // console.log(postTitle);
 
   //   toggleAppearance();
   sendRequest(postTitle);

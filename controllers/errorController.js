@@ -12,9 +12,7 @@ function handleVilidationErrorDB(err, req, res) {
 }
 
 function sendErrorDevelopment(err, res) {
-  console.log('====================================');
   console.log(err.errorStack);
-  console.log('====================================');
   res.status(err.statusCode).render('error', { error: err });
   // res.render('error');
 }

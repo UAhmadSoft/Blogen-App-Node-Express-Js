@@ -21,7 +21,7 @@ const sendMail = async (options) => {
     }
   );
 
-  console.log(html);
+  // console.log(html);
 
   // 3 Define Mail Options
   const mailOptions = {

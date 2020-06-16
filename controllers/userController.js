@@ -110,9 +110,7 @@ exports.saveProfile = catchAsync(async (req, res) => {
   }
 
   //   Update User Details
-  // console.log('====================================');
   // console.log(currentUser);
-  // console.log('====================================');
 
   currentUser.name = name;
   currentUser.bio = bio;
@@ -128,10 +126,8 @@ exports.saveProfile = catchAsync(async (req, res) => {
 });
 
 exports.changeAvatar = catchAsync(async (req, res) => {
-  console.log('====================================');
-  console.log(req.file);
-  console.log(req.body.avatar);
-  console.log('====================================');
+  // console.log(req.file);
+  // console.log(req.body.avatar);
 
   const currentUser = req.user;
   currentUser.image = req.file.filename;

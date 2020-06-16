@@ -8,8 +8,6 @@ module.exports = catchAsync(async (req, res) => {
   const users = await User.find({});
   const posts = await Post.find({});
 
-  console.log(cats[0]);
-
   const userName = req.user.name;
   // console.log(cats.length);
 

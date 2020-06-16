@@ -29,7 +29,7 @@ submitBtn.addEventListener('click', handleSubmit);
 
 function handleSubmit(e) {
   e.preventDefault();
-  console.log(e);
+  // console.log(e);
 
   var password = passwordInput.value;
   var email = emailInput.value;
@@ -44,7 +44,7 @@ function handleSubmit(e) {
     ? (passwordInput.classList.add('is-invalid'), invalids++)
     : passwordInput.classList.remove('is-invalid');
 
-  console.log(invalids);
+  // console.log(invalids);
 
   // Sending POST Request with email and password to server
   if (invalids === 0) {

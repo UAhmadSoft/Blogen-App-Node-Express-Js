@@ -61,7 +61,7 @@ filterBtn.addEventListener('click', function filterResults(e) {
 
   // console.log(fromYear, fromMonth, toYear, toMonth);
 
-  console.log(query);
+  // console.log(query);
 
   $(location).attr('href', `/posts?${query}`);
 });
