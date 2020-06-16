@@ -219,6 +219,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 1 Check if Email Exists
   const { email } = req.body;
+
   if (!email) {
     req.flash('error', 'Empty email');
     return res.render('forgotPassword', {
@@ -229,7 +230,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 2 Check If User Exists with this email
   const user = await User.findOne({
-    email,
+    email: email.toLowerCase(),
   });
 
   if (!user) {
@@ -323,7 +324,9 @@ exports.resetPassword = catchAsync(async (req, res) => {
 
 exports.confirmMail = catchAsync(async (req, res) => {
   // 1 Hash The Avtivation Link
+  console.log('Link Now===============================');
   console.log(req.params.activationLink);
+  console.log('====================================');
 
   const hashedToken = crypto
     .createHash('sha256')
