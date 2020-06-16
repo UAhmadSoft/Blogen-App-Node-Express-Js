@@ -11,9 +11,9 @@ dotenv.config({
   path: './config.env',
 });
 
-const DBLocal = process.env.DATABASE_LOCAL;
+const DB = process.env.DATABASE;
 mongoose
-  .connect(DBLocal, {
+  .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,

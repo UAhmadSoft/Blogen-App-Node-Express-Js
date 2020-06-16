@@ -9,11 +9,11 @@ const APIFeatures = require('./../utils/apiFeatures');
 function filter(value, object) {
   object = object.filter((el) => {
     el.category.title = el.category.title.toLowerCase();
-    console.log(el.category.title);
+    // console.log(el.category.title);
 
     return el.category.title.includes(`${value.toLowerCase()}`);
   });
-  console.log(object.length);
+  // console.log(object.length);
   return object;
 }
 
@@ -46,11 +46,9 @@ exports.getAllPosts = catchAsync(async (req, res) => {
     postUsers = postUsers.split(',');
     // console.log(postUsers);
     // Posts by me
-    console.log(postUsers[0]);
+    // console.log(postUsers[0]);
 
     if (postUsers[0] == '"me"' || postUsers[1] == '"me"') {
-      console.log('1st case');
-
       posts = posts.filter((el) => {
         // console.log('el.id');
         // console.log(el.user._id);
@@ -60,8 +58,6 @@ exports.getAllPosts = catchAsync(async (req, res) => {
         return el.user._id == req.user.id;
       });
     } else {
-      console.log('2nd case');
-
       posts = posts.filter((el) => {
         // console.log('el.id');
         // console.log(el.user._id);
@@ -82,7 +78,7 @@ exports.getAllPosts = catchAsync(async (req, res) => {
 });
 
 exports.addNewPost = catchAsync(async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   // getting all cates for posts.ejs
   const categories = await CatModel.find({});
@@ -158,9 +154,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
   }).select('-post');
 
   if (!like) {
-    console.log('====================================');
     console.log('no like');
-    console.log('====================================');
     res.render('post', {
       post,
       userName: req.user.name,
@@ -190,7 +184,7 @@ exports.likePost = catchAsync(async (req, res, next) => {
 
   const postId = post._id;
 
-  console.log('post id is', postId);
+  // console.log('post id is', postId);
 
   // Check if like already exists then
   const like = await Like.findOne({
