@@ -1,4 +1,6 @@
 const nodeMailer = require('nodemailer');
+const ejs = require('ejs');
+const htmlToText = require('html-to-text');
 
 const sendMail = async (options) => {
   // 1 Create Transportor
@@ -9,24 +11,28 @@ const sendMail = async (options) => {
       pass: process.env.Sendgrid_Password,
     },
   });
-  // const transportor = nodeMailer.createTransport({
-  //   host: process.env.MailTrap_Host,
-  //   port: process.env.MailTrap_Port,
-  //   auth: {
-  //     user: process.env.MailTrap_User,
-  //     pass: process.env.MailTrap_Password,
-  //   },
-  // });
 
-  // 2 Define Mail Options
+  // 2 Render HTML Based on ejs template
+  const html = await ejs.renderFile(
+    `${__dirname}/../views/email/${options.template}`,
+    {
+      user: options.user,
+      url: options.url,
+    }
+  );
+
+  console.log(html);
+
+  // 3 Define Mail Options
   const mailOptions = {
     from: process.env.Email_From,
     to: options.email,
     subject: options.subject,
-    text: options.message,
+    // text: htmlToText.fromString(html),
+    html,
   };
 
-  // 3 Send Email
+  // 4 Send Email
   await transportor.sendMail(mailOptions);
 };
 
