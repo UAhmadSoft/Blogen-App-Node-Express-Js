@@ -17,6 +17,7 @@
     "express": "~4.16.1",
     "express-flash": "0.0.2",
     "express-session": "^1.17.0",
+    "html-to-text": "^5.1.1",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
