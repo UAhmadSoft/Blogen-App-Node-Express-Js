@@ -24,6 +24,9 @@ addPost.addEventListener('click', function addCategory(e) {
   }
 
   if (title && body) {
+    postTitleBtn.value = '';
+    postBodyBtn.value = '';
+    // postTitleBtn.value= "";
     sendRequestPost(title, body, category);
   }
 });
