@@ -34,8 +34,12 @@ exports.getCategory = catchAsync(async (req, res, next) => {
 
   if (!category) {
     req.flash('message', 'No Category with that ID');
-    res.redirect('/categories');
-    return res.render('error', { error: 'No Category Found with this id' });
+    // res.redirect('/categories');
+    return res.render('error', {
+      message: 'No Category Found with this id',
+      userName: req.user,
+      user: req.user,
+    });
   }
 
   res.render('category', {

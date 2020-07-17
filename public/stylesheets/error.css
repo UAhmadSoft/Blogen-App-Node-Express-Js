@@ -1,0 +1,31 @@
+.error {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 80rem;
+  text-align: center;
+}
+.error__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.error__emoji {
+  font-size: 3.75rem;
+  margin-left: 1rem;
+}
+.error__msg {
+  font-size: 2.5rem;
+  font-weight: 700;
+  max-width: 50rem;
+  margin: 0 auto;
+}

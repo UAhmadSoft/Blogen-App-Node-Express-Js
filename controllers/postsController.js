@@ -124,6 +124,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
     return res.render('post', {
       message: req.flash('message'),
       userName: req.user.name,
+      user: req.user,
       post: undefined,
     });
   }
