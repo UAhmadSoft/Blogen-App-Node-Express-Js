@@ -167,6 +167,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
     });
   } else {
     res.render('post', {
+      user: req.user,
       post,
       userName: req.user.name,
       like: like.like,

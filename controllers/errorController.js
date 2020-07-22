@@ -80,7 +80,8 @@ module.exports = (err, req, res, next) => {
         'Something went very Wrong ! Try Again in a little bit !'
       );
       return res.render('error', {
-        message: err,
+        // message: err,
+        message: 'Something went very Wrong ! Try Again in a little bit !',
         userName: req.user.name,
         user: req.user,
       });

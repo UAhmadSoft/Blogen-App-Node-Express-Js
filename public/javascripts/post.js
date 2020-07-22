@@ -56,6 +56,7 @@ commentBtn.addEventListener('click', function commentPost(e) {
     : (commentBody.classList.remove('is-invalid'), (err = 0));
 
   if (err === 0) {
+    commentBody.value = '';
     sendCommentRequest(comment);
   }
 });

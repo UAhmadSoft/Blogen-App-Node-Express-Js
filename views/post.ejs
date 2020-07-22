@@ -191,7 +191,7 @@
                   <%= post.comments[i].getFormattedDate() %>
                 </div>
 
-                <% if(post.comments[i].user.name === userName) { %>
+                <% if(post.comments[i].user.email === user.email) { %>
                 <button class="btn-danger btn btn-sm delComment">
                   Delete Comment <i class="fas fa-trash"></i>
                   <span class="sr-only">
