@@ -1,3 +1,5 @@
+const Pie = 3.14;
+
 const dotenv = require('dotenv');
 const express = require('express');
 const path = require('path');
@@ -6,12 +8,17 @@ const logger = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
+const socket = require('socket.io');
+
+const server = require('./server');
+// console.log('fuck', fuck);
 
 dotenv.config({
   path: './config.env',
 });
 
 const DB = process.env.DATABASE;
+// const DB = process.env.DATABASE_LOCAL;
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -89,8 +96,61 @@ app.all('*', (req, res, next) => {
 // error handler
 app.use(errorController);
 
-const port = process.env.PORT || 3000;
+server.appListen(app);
+let socketServer = server.getServer();
 
-app.listen(port, () => {
-  console.log(`listening to PORT ${port}`);
+// Socket.io Connection
+io = socket(socketServer);
+
+io.on('connection', (socket) => {
+  mySocket = socket;
+
+  // I want to sent this socket to every route or
+  // or commentPost Route
+  app.use((req, res, next) => {
+    console.log('haha req');
+    next();
+  });
+
+  console.log('connection made');
 });
+// console.log(s);
+module.exports = { socketServer, io };
+// Socket.io Setup
+// const io = socket(server);
+
+// const good = function () {
+//   console.log('hhahaah');
+// };
+// const bad = function () {
+//   console.log('isiddidsi');
+// };
+
+// module.exports.good = good;
+
+// exports.Pie = Pie;
+// io.on('connection', (soc) => {
+// module.exports = { Pie, server, good, bad };
+//   console.log('connection made');
+
+//   soc.on('comment', function (data) {
+//     console.log(data);
+//     postController.commentPost();
+//   });
+// });
+
+// io.on('connection', (socket) => {
+//   console.log('made socket connection', socket.id);
+
+//   // Handle chat event
+//   socket.on('chat', function (data) {
+//     console.log(data);
+//     io.sockets.emit('chat', data);
+//   });
+
+//   // Handle typing event
+//   socket.on('typing', function (data) {
+//     socket.broadcast.emit('typing', data);
+//   });
+// });
+// console.log(io);

@@ -13,7 +13,7 @@ function handleVilidationErrorDB(err, req, res) {
 function handleCastErrorDB(err, req, res) {
   // console.log('object . vales is', Object.values(err.errors));
   // const errors = Object.values(err.errors).map((el) => el.message);
-  console.log(err.message);
+  // console.log(err.message);
   // log
   let regex = /(["'])(?:\\.|[^\\])*?\1/g;
 
@@ -32,7 +32,7 @@ function handleCastErrorDB(err, req, res) {
 }
 
 function sendErrorDevelopment(err, res) {
-  console.log(err.errorStack);
+  // console.log(err.errorStack);
   res
     .status(err.statusCode)
     .render('error', { message: err, user: req.user, userName: req.user.name });

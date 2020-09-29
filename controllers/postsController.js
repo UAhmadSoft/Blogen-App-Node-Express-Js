@@ -1,3 +1,6 @@
+// const { s, pro } = require('./../app.js');
+const socket = require('socket.io');
+
 const catchAsync = require('./../utils/catchAsync');
 const Post = require('./../models/postModel');
 const CatModel = require('./../models/categories');
@@ -6,6 +9,14 @@ const Comment = require('./../models/commentModel');
 // const User = require('./../models/userModel');
 const APIFeatures = require('./../utils/apiFeatures');
 
+let io = {};
+// const { server, Pie } = require('./../app');
+// app.good();
+// app.bad();
+// console.log(app.good);
+// console.log('app.io', app.server);
+// const io = socket(app.server);
+// console.log('appp is', s, pro);
 function filter(value, object) {
   object = object.filter((el) => {
     el.category.title = el.category.title.toLowerCase();
@@ -24,6 +35,7 @@ exports.getAllPosts = catchAsync(async (req, res) => {
   const features = new APIFeatures(query, req.query).sort().filterByDate();
 
   const categories = await CatModel.find({});
+  // console.log('app', app);
   let posts = await features.query;
 
   // Filtering by Category
@@ -105,9 +117,19 @@ exports.addNewPost = catchAsync(async (req, res) => {
     user: req.user,
   });
 });
-
+let mySocket = {};
 exports.getPost = catchAsync(async (req, res, next) => {
   // 1 Getting post
+
+  const { socketServer } = require('./../app');
+  // io = socket(socketServer);
+
+  // io.on('connection', (socket) => {
+  //   mySocket = socket;
+
+  //   console.log('connection made');
+  // });
+
   const post = await Post.findById(req.params.id)
     .populate({
       path: 'comments',
@@ -134,6 +156,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
   // console.log('====================================');
 
   // 2 Getting total Likes of the post
+  console.log(req.params.id);
   const likes = await Like.find({
     post: req.params.id,
     like: true,
@@ -141,7 +164,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
 
   const likesTotal = likes.length;
 
-  // console.log('total likes are', likesTotal);
+  console.log('total likes are', likesTotal);
 
   // 3 Getting like info about the post by this user
   const like = await Like.findOne({
@@ -151,7 +174,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
 
   // 4 Getting Comments about this post
   const comments = await Comment.find({
-    post: post,
+    post,
   }).select('-post');
 
   if (!like) {
@@ -179,6 +202,7 @@ exports.getPost = catchAsync(async (req, res, next) => {
 });
 
 exports.likePost = catchAsync(async (req, res, next) => {
+  const { io } = require('./../app');
   // Get Post Id
   const post = await Post.findOne({
     title: req.body.title.trim(),
@@ -196,11 +220,15 @@ exports.likePost = catchAsync(async (req, res, next) => {
 
   // If like exist then unlike it ,
   if (like) {
+    console.log('like exist .....unliking');
     like.like = like.like === true ? false : true;
 
     await like.save({ validateBeforeSave: 'false' });
+
+    console.log('after unlike now like is', like.like);
     // false -> unlike
   } else {
+    console.log('like not exists');
     const newLike = await Like.create({
       user: req.user.id,
       post: postId,
@@ -213,7 +241,22 @@ exports.likePost = catchAsync(async (req, res, next) => {
       });
     }
   }
-  let redirectUrl = req.originalUrl.replace('/like', '');
+  const postLikes = await Like.find({
+    post,
+    like: true,
+  });
+
+  if (like) {
+    liking = like.like;
+  } else {
+    liking = true;
+  }
+  io.sockets.emit('likedPost', {
+    like: liking,
+    likes: postLikes.length,
+    email: req.user.email,
+  });
+
   res.json({
     status: 'success',
   });
@@ -243,13 +286,16 @@ exports.deletePost = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.commentPost = catchAsync(async (req, res, next) => {
+exports.commentPost = catchAsync(async (req, res, nxt) => {
   const id = req.originalUrl.split('/')[2];
-
-  // Getting Post and User
+  const { io } = require('./../app');
 
   const post = await Post.findById(id);
   const user = req.user;
+
+  const postComments = await Comment.find({
+    post,
+  });
 
   const newComment = await Comment.create({
     user,
@@ -264,13 +310,35 @@ exports.commentPost = catchAsync(async (req, res, next) => {
     });
   }
 
+  io.sockets.emit('comment', {
+    comment: req.body.comment,
+    user: user.name,
+    id: newComment._id,
+    date: newComment.getFormattedDate(),
+    author: newComment.user.email === req.user.email ? true : false,
+    comments: newComment ? postComments.length + 1 : postComments.length,
+  });
   res.json({
     status: 'success',
   });
 });
 
 exports.deleteComment = catchAsync(async (req, res, next) => {
+  const id = req.originalUrl.split('/')[2];
+  const { io } = require('./../app');
+
   await Comment.findByIdAndDelete(req.params.id);
+  const { postId } = req.body;
+  console.log(req.body);
+
+  const comments = await Comment.find({
+    post: postId,
+  });
+
+  io.sockets.emit('commentDeleted', {
+    id: req.params.id,
+    comments: comments.length,
+  });
 
   res.json({
     status: 'success',

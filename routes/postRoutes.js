@@ -28,6 +28,8 @@ router
   .route('/:id/comment')
   .post(urlEncodedParser, postsController.commentPost);
 
-router.route('/comments/:id').delete(postsController.deleteComment);
+router
+  .route('/comments/:id')
+  .delete(urlEncodedParser, postsController.deleteComment);
 
 module.exports = router;

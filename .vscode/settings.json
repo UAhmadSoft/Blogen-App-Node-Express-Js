@@ -3,5 +3,6 @@
   "emmet.includeLanguages": {
     "ejs": "html"
   },
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "debug.javascript.warnOnLongPrediction": false
 }
