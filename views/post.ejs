@@ -109,9 +109,9 @@
                 <h4>
                   <i class="fa fa-user"></i> Posted By :- <% if
                   (post.user.name=== userName) { %> You
-                  <p id="email">@<%=post.user.email %></p>
+                  <p id="email"><%=user.email %></p>
                   <% } else { %>
-                  <p id="email">@<%=post.user.email %></p>
+                  <p id="email"><%=user.email %></p>
                   <% } %>
                 </h4>
 

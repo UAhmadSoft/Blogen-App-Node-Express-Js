@@ -17,8 +17,8 @@ dotenv.config({
   path: './config.env',
 });
 
-const DB = process.env.DATABASE;
-// const DB = process.env.DATABASE_LOCAL;
+// const DB = process.env.DATABASE;
+const DB = process.env.DATABASE_LOCAL;
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -105,17 +105,11 @@ io = socket(socketServer);
 io.on('connection', (socket) => {
   mySocket = socket;
 
-  // I want to sent this socket to every route or
-  // or commentPost Route
-  app.use((req, res, next) => {
-    console.log('haha req');
-    next();
-  });
-
+  // I want to sent this socket to every route Controller
   console.log('connection made');
 });
 // console.log(s);
-module.exports = { socketServer, io };
+module.exports = { io };
 // Socket.io Setup
 // const io = socket(server);
 

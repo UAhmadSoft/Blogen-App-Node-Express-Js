@@ -56,7 +56,8 @@ module.exports = (err, req, res, next) => {
       return res.redirect('/login');
     } else if (err.name === 'TokenExpiredError') {
       req.flash('message', 'You Must Login First');
-      return res.redirect('/login');
+      return res.render('login', { message: req.flash('message') });
+      // return res.redirect('/login');
     } else if (err.name === 'ValidationError') {
       handleVilidationErrorDB(err, req, res);
     } else if (err.name === 'CastError') {

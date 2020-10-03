@@ -28,7 +28,8 @@ var socket = io.connect('ws://localhost:3000', { transports: ['websocket'] });
 socket.on('comment', function (data) {
   // console.log(data);
   let condition;
-  if (data.author === true) {
+  const email = document.getElementById('email').innerText;
+  if (data.author === email) {
     // Add Comment
     condition =
       `<button class="btn-danger btn btn-sm delComment">
@@ -93,10 +94,7 @@ socket.on('comment', function (data) {
 socket.on('likedPost', function (data) {
   const liked = document.getElementById('like');
   console.log('like is ', data.like);
-  const email =
-    document.getElementById('email').innerText.split('@')[1] +
-    '@' +
-    document.getElementById('email').innerText.split('@')[2];
+  const email = document.getElementById('email').innerText;
   // Only toogle button of use who click it
   console.log('email is', email);
   console.log('data.email is', data.email);

@@ -121,6 +121,7 @@ let mySocket = {};
 exports.getPost = catchAsync(async (req, res, next) => {
   // 1 Getting post
 
+  console.log(`user is ${req.user.email}`);
   const { socketServer } = require('./../app');
   // io = socket(socketServer);
 
@@ -310,14 +311,18 @@ exports.commentPost = catchAsync(async (req, res, nxt) => {
     });
   }
 
+  // I want to broadcast here
+  // socket.broadcast.emit('commentMade', data);
+  console.log('io is', io);
   io.sockets.emit('comment', {
     comment: req.body.comment,
     user: user.name,
     id: newComment._id,
     date: newComment.getFormattedDate(),
-    author: newComment.user.email === req.user.email ? true : false,
+    author: req.user.email,
     comments: newComment ? postComments.length + 1 : postComments.length,
   });
+
   res.json({
     status: 'success',
   });
