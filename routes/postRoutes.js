@@ -20,7 +20,7 @@ router
 router
   .route('/:id')
   .get(postsController.getPost)
-  .delete(postsController.deletePost);
+  .delete(urlEncodedParser, postsController.deletePost);
 
 router.route('/:id/like').patch(urlEncodedParser, postsController.likePost);
 

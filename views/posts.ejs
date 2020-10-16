@@ -44,7 +44,15 @@
         </div>
       </div>
     </header>
+ <% if (message.length > 0){ %>
+    <div class="alert alert-danger alert-dismissible text-center" id="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+      </button>
+      <strong> <%= message %> </strong>
+    </div>
 
+    <% } %>
     <!-- SEARCH -->
     <section id="search" class="py-4 mb-4 bg-light">
       <div class="container">
@@ -55,6 +63,7 @@
               class="btn btn-primary btn-block"
               data-toggle="modal"
               data-target="#addPostModal"
+              style="cursor: pointer;"
             >
               <i class="fas fa-plus"></i> Add Post
             </a>
@@ -78,7 +87,7 @@
 
     <div class="container">
       <button class="btn btn-lg btn-success" type="button" data-toggle="collapse" data-target="#filterBox" aria-expanded="false"
-          aria-controls="filterBox">
+          aria-controls="filterBox"   style="cursor: pointer;">
         Filter
       </button>
     </div>
@@ -331,7 +340,7 @@
                     <td>
                       <a
                         href="posts/<%= posts[i].id %>  "
-                        class="btn btn-secondary"
+                        class="btn btn-secondary"   style="cursor: pointer;"
                       >
                         <i class="fas fa-angle-double-right"></i>
                         Details

@@ -25,8 +25,25 @@ const delPost = document.getElementById('delPost');
 
 var socket = io.connect('ws://localhost:3000', { transports: ['websocket'] });
 
+socket.on('connect', () => {
+  console.log('connected');
+  console.log(socket.id);
+});
+
+socket.on('broadcast', function (data) {
+  console.log('broad cast received here');
+});
+socket.on('commentMade', function (data) {
+  console.log(' Comment made broad cast received here');
+});
+
 socket.on('comment', function (data) {
   // console.log(data);
+  if (data.socketId === socket.id) {
+    console.log('this is sender');
+  } else {
+    console.log('this is NOT sender');
+  }
   let condition;
   const email = document.getElementById('email').innerText;
   if (data.author === email) {
@@ -91,6 +108,13 @@ socket.on('comment', function (data) {
   numComments.innerHTML = ` ${data.comments} Comments`;
 });
 
+socket.on('postDeleted', (data) => {
+  if (socket.id !== data.socketId) {
+    // receiver
+    $(location).attr('href', '/posts');
+  }
+});
+
 socket.on('likedPost', function (data) {
   const liked = document.getElementById('like');
   console.log('like is ', data.like);
@@ -136,7 +160,7 @@ function deletePost() {
   $.ajax({
     type: 'DELETE',
     url: urlLike,
-    data: {},
+    data: { socketId: socket.id },
     success: function (data) {
       if (data.status == 'fail') {
         // location.reload();
@@ -198,10 +222,11 @@ function sendRequest(postTitle) {
 
 function sendCommentRequest(comment) {
   const urlLike = $(location).attr('href');
+  $('#commentModal').modal('hide');
   $.ajax({
     type: 'POST',
     url: urlLike + '/comment',
-    data: { comment },
+    data: { comment, socketId: socket.id },
     success: function (data) {
       if (data.status == 'fail') {
         // location.reload();

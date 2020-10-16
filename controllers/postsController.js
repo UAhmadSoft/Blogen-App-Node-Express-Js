@@ -28,6 +28,11 @@ function filter(value, object) {
   return object;
 }
 
+exports.checkpost = catchAsync(async (req, res, next) => {
+  const id = req.originalUrl.split('/')[2];
+  next();
+});
+
 exports.getAllPosts = catchAsync(async (req, res) => {
   let query = Post.find();
 
@@ -86,6 +91,7 @@ exports.getAllPosts = catchAsync(async (req, res) => {
     posts,
     categories,
     user: req.user,
+    message: req.flash('message'),
   });
 });
 
@@ -115,6 +121,7 @@ exports.addNewPost = catchAsync(async (req, res) => {
     posts,
     categories,
     user: req.user,
+    message: req.flash('message'),
   });
 });
 let mySocket = {};
@@ -256,6 +263,7 @@ exports.likePost = catchAsync(async (req, res, next) => {
     like: liking,
     likes: postLikes.length,
     email: req.user.email,
+    broadcast: false,
   });
 
   res.json({
@@ -265,7 +273,7 @@ exports.likePost = catchAsync(async (req, res, next) => {
 
 exports.deletePost = catchAsync(async (req, res, next) => {
   // Checking if user who is deleting post is the one who made post
-
+  const { io } = require('./../app');
   const post = await Post.findOne({
     user: req.user,
   });
@@ -282,12 +290,18 @@ exports.deletePost = catchAsync(async (req, res, next) => {
 
   await Post.findByIdAndDelete(req.params.id);
 
+  req.flash('message', 'Post is deleted !');
+  io.sockets.emit('postDeleted', {
+    socketId: req.body.socketId,
+  });
+
   res.json({
     status: 'success',
   });
 });
 
 exports.commentPost = catchAsync(async (req, res, nxt) => {
+  console.log('socket id is ', req.body.socketId);
   const id = req.originalUrl.split('/')[2];
   const { io } = require('./../app');
 
@@ -312,8 +326,7 @@ exports.commentPost = catchAsync(async (req, res, nxt) => {
   }
 
   // I want to broadcast here
-  // socket.broadcast.emit('commentMade', data);
-  console.log('io is', io);
+  // console.log('io is', io);
   io.sockets.emit('comment', {
     comment: req.body.comment,
     user: user.name,
@@ -321,6 +334,8 @@ exports.commentPost = catchAsync(async (req, res, nxt) => {
     date: newComment.getFormattedDate(),
     author: req.user.email,
     comments: newComment ? postComments.length + 1 : postComments.length,
+    // broadcast: true,
+    socketId: req.body.socketId,
   });
 
   res.json({
