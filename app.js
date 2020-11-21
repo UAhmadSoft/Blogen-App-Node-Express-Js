@@ -1,5 +1,3 @@
-const Pie = 3.14;
-
 const dotenv = require('dotenv');
 const express = require('express');
 const path = require('path');
@@ -10,12 +8,11 @@ const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const socket = require('socket.io');
 
-const server = require('./server');
-// console.log('fuck', fuck);
-
 dotenv.config({
   path: './config.env',
 });
+const server = require('./server');
+// console.log('fuck', fuck);
 
 const DB = process.env.DATABASE;
 // const DB = process.env.DATABASE_LOCAL;
@@ -35,13 +32,14 @@ mongoose
 var index = require('./routes/indexRoutes');
 var users = require('./routes/userRoutes');
 var posts = require('./routes/postRoutes');
-var profile = require('./routes/userRoutes');
 var categories = require('./routes/categoryRoutes');
 
 const errorController = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 
 var app = express();
+
+// error handler
 
 app.use(logger('dev'));
 
@@ -93,7 +91,6 @@ app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 
-// error handler
 app.use(errorController);
 
 server.appListen(app);
@@ -110,41 +107,3 @@ io.on('connection', (socket) => {
 });
 // console.log(s);
 module.exports = { io };
-// Socket.io Setup
-// const io = socket(server);
-
-// const good = function () {
-//   console.log('hhahaah');
-// };
-// const bad = function () {
-//   console.log('isiddidsi');
-// };
-
-// module.exports.good = good;
-
-// exports.Pie = Pie;
-// io.on('connection', (soc) => {
-// module.exports = { Pie, server, good, bad };
-//   console.log('connection made');
-
-//   soc.on('comment', function (data) {
-//     console.log(data);
-//     postController.commentPost();
-//   });
-// });
-
-// io.on('connection', (socket) => {
-//   console.log('made socket connection', socket.id);
-
-//   // Handle chat event
-//   socket.on('chat', function (data) {
-//     console.log(data);
-//     io.sockets.emit('chat', data);
-//   });
-
-//   // Handle typing event
-//   socket.on('typing', function (data) {
-//     socket.broadcast.emit('typing', data);
-//   });
-// });
-// console.log(io);

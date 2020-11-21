@@ -46,6 +46,7 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 
+  console.log('inside error controller');
   console.log(err);
 
   if (process.env.NODE_ENV === 'development') {
@@ -70,12 +71,15 @@ module.exports = (err, req, res, next) => {
       return res.status(200).json({
         status: 'fail',
       });
+    } else if (err.statusCode === 404) {
+      req.flash('error', '404 Not Found !');
+      return res.render('error', {
+        // message: err,
+        message: '404 NOT FOUND !',
+        userName: req.user.name,
+        user: req.user,
+      });
     } else {
-      // if (err.statusCode === 500) {
-      // }
-      console.log('====================================');
-      console.log(req.user.name);
-      console.log('====================================');
       req.flash(
         'error',
         'Something went very Wrong ! Try Again in a little bit !'
@@ -86,13 +90,6 @@ module.exports = (err, req, res, next) => {
         userName: req.user.name,
         user: req.user,
       });
-      // return res.render('error', { error: err });
-      // res.json({
-      //   status: 'fail',
-      //   message: err.message,
-      //   stack: err.stack,
-      // });
-      // sendErrorProduction(err, res);
     }
   }
 };

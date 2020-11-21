@@ -1,7 +1,9 @@
 // const app = require('./app');
 var server;
 // console.log(app);
-const port = process.env.PORT || 3000;
+// console.log('environment variables are: ', process.env);
+
+const port = process.env.PORT || 4000;
 module.exports.getServer = () => server;
 module.exports.appListen = (app) => {
   server = app.listen(port, () => {
