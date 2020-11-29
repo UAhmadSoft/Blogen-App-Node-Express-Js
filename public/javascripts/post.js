@@ -23,7 +23,14 @@ delComment.forEach((el) => {
 // Element for deleting Post
 const delPost = document.getElementById('delPost');
 
-var socket = io.connect('ws://localhost:3000', { transports: ['websocket'] });
+// ws://blogen-app.herokuapp.com
+const url = `ws://${window.location.host}`;
+var socket = io.connect(url, {
+  transports: ['websocket'],
+});
+
+console.log('url', url);
+// var socket = io.connect(`ws://localhost:3000', { transports: ['websocket'] });
 
 socket.on('connect', () => {
   console.log('connected');

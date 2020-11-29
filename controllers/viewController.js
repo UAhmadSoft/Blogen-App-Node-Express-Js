@@ -1,12 +1,19 @@
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const catchAsync = require('./../utils/catchAsync');
 const User = require('../models/userModel');
 
 exports.login = catchAsync(async (req, res) => {
-  if (!req.cookies.jwt || req.cookies.jwt === 'loggedOut') {
-    return res.render('login', { message: req.flash('message') });
-  }
+  // Check if user is Already logged in
+  // if (!req.cookies.jwt || req.cookies.jwt === 'loggedOut') {
+  //   return res.render('login', { message: req.flash('message') });
+  // }
+
+  let token = req.cookies.jwt;
+
+  await jwt.verify(token, process.env.JWT_SECRET);
+
   // console.log('hi');
   // 2 Check if token is valid
 

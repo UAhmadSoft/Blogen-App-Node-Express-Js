@@ -179,6 +179,12 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 
   await user.save({ runValidators: false });
 
+  //  Clear all cookies for jwt
+  res.cookie('jwt', 'loggedOut', {
+    // expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+
   res.json({
     status: 'success',
   });

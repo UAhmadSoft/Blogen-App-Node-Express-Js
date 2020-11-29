@@ -54,7 +54,7 @@ module.exports = (err, req, res, next) => {
   } else if (process.env.NODE_ENV === 'production') {
     if (err.name === 'JsonWebTokenError') {
       req.flash('message', 'You Must Login First');
-      return res.redirect('/login');
+      return res.render('login', { message: req.flash('message') });
     } else if (err.name === 'TokenExpiredError') {
       req.flash('message', 'You Must Login First');
       return res.render('login', { message: req.flash('message') });
