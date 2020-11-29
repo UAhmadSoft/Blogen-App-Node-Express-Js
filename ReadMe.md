@@ -2,18 +2,26 @@
 
 Built on These technologies
 
-### Node Js
-
-### Express Js
-
-### Mongodb
+- Node Js
+- Express Js
+- Mongodb
 
 ### Booststrap 4 as frontend in ejs template
 
-Using almost all Node , Express and Mongodb main features like authentication by JWT , aggregation pipiline ,
-filtering results using query strings , image uploading by
-multer , error handling , server-side rendering by ejs
-template , flash messages , real-time comments/likes using Socket.io,
+Using almost all Node , Express and Mongodb main features like
+
+- Authentication by JWT
+- Aggregation pipiline
+- Filtering results using query strings
+- Image uploading by using Multer
+- Error handling
+- Server-side rendering by ejs templates
+- Flash messages
+- Real-time comments/likes using Socket.io,
+
+![image](https://ibb.co/55mfxxt)
+![image](https://ibb.co/M25MPC1)
+![image](https://ibb.co/TBT03d0)
 
 ## How to Run after downloading this repo
 
