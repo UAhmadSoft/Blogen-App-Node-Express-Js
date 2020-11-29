@@ -19,9 +19,9 @@ Using almost all Node , Express and Mongodb main features like
 - Flash messages
 - Real-time comments/likes using Socket.io,
 
-![image](https://ibb.co/55mfxxt)
-![image](https://ibb.co/M25MPC1)
-![image](https://ibb.co/TBT03d0)
+![image](https://i.ibb.co/64zfJJV/Screenshot-52.png)
+![image](https://i.ibb.co/QbjrYKH/Screenshot-53.png)
+![image](https://i.ibb.co/SXxmCGm/Screenshot-54.png)
 
 ## How to Run after downloading this repo
 
