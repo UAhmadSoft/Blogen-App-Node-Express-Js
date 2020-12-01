@@ -212,13 +212,12 @@ exports.getPost = catchAsync(async (req, res, next) => {
 exports.likePost = catchAsync(async (req, res, next) => {
   const { io } = require('./../app');
   // Get Post Id
-  const post = await Post.findOne({
-    title: req.body.title.trim(),
-  });
+
+  const post = await Post.findById(req.params.id);
 
   const postId = post._id;
 
-  // console.log('post id is', postId);
+  console.log('post id is', postId);
 
   // Check if like already exists then
   const like = await Like.findOne({
