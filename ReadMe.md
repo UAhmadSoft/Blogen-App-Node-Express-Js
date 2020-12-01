@@ -5,11 +5,9 @@ Built on These technologies
 - Node Js
 - Express Js
 - Mongodb
-
-### Booststrap 4 as frontend in ejs template
+- Booststrap 4 as Frontend in ejs template
 
 Using almost all Node , Express and Mongodb main features like
-
 - Authentication by JWT
 - Aggregation pipiline
 - Filtering results using query strings
@@ -18,10 +16,11 @@ Using almost all Node , Express and Mongodb main features like
 - Server-side rendering by ejs templates
 - Flash messages
 - Real-time comments/likes using Socket.io,
+- and Many more
 
-![image](https://ibb.co/55mfxxt)
-![image](https://ibb.co/M25MPC1)
-![image](https://ibb.co/TBT03d0)
+![image](https://i.ibb.co/64zfJJV/Screenshot-52.png)
+![image](https://i.ibb.co/QbjrYKH/Screenshot-53.png)
+![image](https://i.ibb.co/SXxmCGm/Screenshot-54.png)
 
 ## How to Run after downloading this repo
 
