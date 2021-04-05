@@ -35,7 +35,7 @@ function sendErrorDevelopment(err, res) {
   // console.log(err.errorStack);
   res
     .status(err.statusCode)
-    .render('error', { message: err, user: req.user, userName: req.user.name });
+    .json('error', { status : err.status , message: err.message , statusCode : err.statusCode , stack , err.stack });
   // res.render('error');
 }
 
