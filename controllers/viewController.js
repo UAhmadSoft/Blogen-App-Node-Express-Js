@@ -4,21 +4,26 @@ const jwt = require('jsonwebtoken');
 const catchAsync = require('./../utils/catchAsync');
 const User = require('../models/userModel');
 
-exports.login = catchAsync(async (req, res) => {
+exports.login = async (req, res) => {
   // Check if user is Already logged in
   // if (!req.cookies.jwt || req.cookies.jwt === 'loggedOut') {
   //   return res.render('login', { message: req.flash('message') });
   // }
 
   let token = req.cookies.jwt;
-
-  await jwt.verify(token, process.env.JWT_SECRET);
+  try {
+    await jwt.verify(token, process.env.JWT_SECRET);
+    res.redirect('/');
+  } catch (err) {
+    res.render('login', {
+      message: req.flash('message'),
+      error: req.flash('error'),
+    });
+  }
 
   // console.log('hi');
   // 2 Check if token is valid
-
-  res.redirect('/');
-});
+};
 
 exports.signup = catchAsync(async (req, res, next) => {
   if (!req.cookies.jwt || req.cookies.jwt === 'loggedOut') {

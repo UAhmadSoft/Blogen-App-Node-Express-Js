@@ -33,9 +33,12 @@ function handleCastErrorDB(err, req, res) {
 
 function sendErrorDevelopment(err, res) {
   // console.log(err.errorStack);
-  res
-    .status(err.statusCode)
-    .json('error', { status : err.status , message: err.message , statusCode : err.statusCode , stack , err.stack });
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+    statusCode: err.statusCode,
+    stack: err.stack,
+  });
   // res.render('error');
 }
 
@@ -48,6 +51,8 @@ module.exports = (err, req, res, next) => {
 
   console.log('inside error controller');
   console.log(err);
+
+  console.log(`process.env.NODE_ENV`, process.env.NODE_ENV);
 
   if (process.env.NODE_ENV === 'development') {
     sendErrorDevelopment(err, res);
